@@ -2,6 +2,9 @@
 
 //Require
 var ut = require("array");
+//Platform width
+var deviceWidth = Ti.Platform.displayCaps.platformWidth;
+console.log(deviceWidth);
 //Backgorund
 Ti.UI.setBackgroundColor('#CB5727');
 //Main Window
@@ -90,6 +93,9 @@ var signUp = Ti.UI.createButton({
 	font:{fontSize:16,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
 	top: 390,
 	left: 245
+});
+signUp.addEventListener('click', function(){
+    winS.open();
 });
 //Add
 mainWin.add(signIn);
@@ -219,5 +225,18 @@ var create = Ti.UI.createButton({
 //Add
 winS.add(create);
 
-winS.open();
-//mainWin.open();
+//Table Window
+// var winTable = Ti.UI.createWindow({  
+    // backgroundColor:'#FFFFFF'
+// });
+// //Table
+// var table = Ti.UI.createTableView({
+	// style: Ti.UI.iPhone.TableViewStyle.GROUPED,
+	// data: [utSports],
+	// separatorColor: "#CB5727",
+// });
+// winTable.add(table);
+
+mainWin.open();
+//winS.open();
+//winTable.open();

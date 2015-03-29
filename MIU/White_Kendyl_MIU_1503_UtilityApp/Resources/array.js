@@ -41,4 +41,4 @@ var utSports = {
             ]},
 
 }
- exports.utSports = (utSports);
+ exports.sports = utSports;
