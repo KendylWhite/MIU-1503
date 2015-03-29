@@ -6,7 +6,6 @@ var ut = require("array");
 Ti.UI.setBackgroundColor('#CB5727');
 //Main Window
 var mainWin = Ti.UI.createWindow({  
-    title:'TexasSports.com',
     backgroundColor:'#FFFFFF'
 });
 //Title and Logo
@@ -97,28 +96,128 @@ mainWin.add(signIn);
 mainWin.add(dont);
 mainWin.add(signUp);
 
+//Sign Up Window
+var winS = Ti.UI.createWindow({  
+    backgroundColor:'#FFFFFF'
+});
+//Title and Logo
+var headerTS = Ti.UI.createLabel({
+	color:'#CB5727',
+	text:'TexasSports.com',
+	font:{fontSize:30,fontFamily:'Helvetica Neue'},
+	textAlign:'left',
+	top: 20,
+});
+var logoS = Ti.UI.createImageView({
+	image: "utImages/logo.png",
+	height: 100,
+	width: 200,
+	top: 65,
+});
+//Add
+winS.add(logoS);
+winS.add(headerTS);
 
-// create controls tab and root window
+//Name, Email and Password
+var required = Ti.UI.createLabel({
+	color:'#CB5727',
+	text:'*Required Fields',
+	font:{fontSize:12,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
+	textAlign:'left',
+	top: 180,
+	left: 75,
+});
+var nameLabel = Ti.UI.createLabel({
+	color:'#CB5727',
+	text:'First and Last Name*',
+	font:{fontSize:18,fontFamily:'Helvetica Neue'},
+	textAlign:'left',
+	top: 195,
+	left: 75,
+});
+var emailLabelS = Ti.UI.createLabel({
+	color:'#CB5727',
+	text:'Email*',
+	font:{fontSize:18,fontFamily:'Helvetica Neue'},
+	textAlign:'left',
+	top: 240,
+	left: 75,
+});
+var passwordLabelS = Ti.UI.createLabel({
+	color:'#CB5727',
+	text:'Password*',
+	font:{fontSize:18,fontFamily:'Helvetica Neue'},
+	textAlign:'left',
+	top: 285,
+	left: 75,
+});var confirmLabel = Ti.UI.createLabel({
+	color:'#CB5727',
+	text:'Confirm Password*',
+	font:{fontSize:18,fontFamily:'Helvetica Neue'},
+	textAlign:'left',
+	top: 330,
+	left: 75,
+});
+var name = Ti.UI.createTextField({
+	color:'#75000000',
+	backgroundColor: "#75CCCCCC",
+	borderColor:"#CB5727",
+	borderRadius:3,
+	width: 225,
+	font:{fontSize:18,fontFamily:'Helvetica Neue'},
+	textAlign:'left',
+	top: 215,
+});
+var emailS = Ti.UI.createTextField({
+	color:'#75000000',
+	backgroundColor: "#75CCCCCC",
+	borderColor:"#CB5727",
+	borderRadius:3,
+	width: 225,
+	font:{fontSize:18,fontFamily:'Helvetica Neue'},
+	textAlign:'left',
+	top: 260,
+});
+var passwordS = Ti.UI.createTextField({
+	color:'#75000000',
+	backgroundColor: "#75CCCCCC",
+	borderColor:"#CB5727",
+	borderRadius:3,
+	width: 225,
+	font:{fontSize:18,fontFamily:'Helvetica Neue'},
+	textAlign:'left',
+	top: 305,
+});
+var confirm = Ti.UI.createTextField({
+	color:'#75000000',
+	backgroundColor: "#75CCCCCC",
+	borderColor:"#CB5727",
+	borderRadius:3,
+	width: 225,
+	font:{fontSize:18,fontFamily:'Helvetica Neue'},
+	textAlign:'left',
+	top: 350,
+});
+//Add
+winS.add(required);
+winS.add(nameLabel);
+winS.add(name);
+winS.add(emailLabelS);
+winS.add(emailS);
+winS.add(passwordLabelS);
+winS.add(passwordS);
+winS.add(confirmLabel);
+winS.add(confirm);
 
-// var win2 = Titanium.UI.createWindow({  
-    // title:'Tab 2',
-    // backgroundColor:'#fff'
-// });
-// var tab2 = Titanium.UI.createTab({  
-    // icon:'KS_nav_ui.png',
-    // title:'Tab 2',
-    // window:win2
-// });
-// 
-// var label2 = Titanium.UI.createLabel({
-	// color:'#999',
-	// text:'I am Window 2',
-	// font:{fontSize:20,fontFamily:'Helvetica Neue'},
-	// textAlign:'center',
-	// width:'auto'
-// });
-// 
-// win2.add(label2);
+//Button
+var create = Ti.UI.createButton({
+	title:'Sign Up',
+	color: '#CB5727',
+	font:{fontSize:16,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
+	top: 375,
+});
+//Add
+winS.add(create);
 
-
-mainWin.open();
+winS.open();
+//mainWin.open();
