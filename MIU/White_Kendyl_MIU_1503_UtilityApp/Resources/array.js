@@ -3,7 +3,7 @@ var utSports = {
         men : {
                 title: "Men",
                 color: "#CB5727",
-            mItems : [
+            items : [
                 {name: "Football",
                 image: "utImages/football.jpg",
 				description: "9 National Championships",},
@@ -23,21 +23,21 @@ var utSports = {
 		 women : {
                 title: "Women",
                 color: "#CB5727",
-            wItems : [
+            items : [
                 {name: "Volleyball",
                 image: "utImages/volleyball.jpg",
 				description: "3 National Championships",},
 				{name: "Baketball",
                 image: "utImages/basketball.jpg",
-				description: "1 Natinal Championship",},
+				description: "1 National Championship",},
 				{name: "Softball",
                 image: "utImages/softball.jpg",
 				description: "5 Conference Championships",},
 				{name: "Track & Field",
                 image: "utImages/track.jpg",
 				description: "4 National Championships",},
-				{name: "Soccer.jpg",
-                image: "utImages/soccer",
+				{name: "Soccer",
+                image: "utImages/soccer.jpg",
 				description: "1 Conference Championship",},
             ]},
 

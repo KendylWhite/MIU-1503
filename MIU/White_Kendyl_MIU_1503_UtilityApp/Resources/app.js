@@ -98,7 +98,7 @@ var login = Ti.UI.createView({
 login.add(loginLabel);
 
 var error = Ti.UI.createLabel({
-	text: "Email & Password Don't Macth",
+	text: "Email & Password Don't Match",
 	color: "red",
 	font:{fontSize:18,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
 	center: 0,
@@ -284,7 +284,7 @@ var winTable = Ti.UI.createWindow({
 	backgroundColor : "#FFFFFF",
 	title : "TexasSports.com"
 });
-
-winTable.add(utSports.table);
+//Add
+winTable.add(utSports.utTable);
 
 navWin.open();
