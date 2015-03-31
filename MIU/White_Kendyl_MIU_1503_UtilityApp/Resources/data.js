@@ -1,4 +1,3 @@
-//Array
 var utSports = {
         men : {
                 title: "Men",
@@ -42,4 +41,4 @@ var utSports = {
             ]},
 
 }
- exports.utSports = utSports;
+ exports.sports = utSports;

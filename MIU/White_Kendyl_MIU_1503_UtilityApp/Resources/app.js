@@ -1,33 +1,31 @@
 //Kendyl White - Utility App
 
 //Require
-var ut = require("array");
+var utSports = require("array");
+var utSports = require("table");
+require("array");
+require("table");
 //Platform width
 var deviceWidth = Ti.Platform.displayCaps.platformWidth;
 console.log(deviceWidth);
-//Backgorund
-Ti.UI.setBackgroundColor('#CB5727');
 //Main Window
 var mainWin = Ti.UI.createWindow({  
-    backgroundColor:'#FFFFFF'
+    backgroundColor:'#FFFFFF',
+    title : "TexasSports.com",
+	layout : "vertical",
 });
-//Title and Logo
-var headerT = Ti.UI.createLabel({
-	color:'#CB5727',
-	text:'TexasSports.com',
-	font:{fontSize:30,fontFamily:'Helvetica Neue'},
-	textAlign:'left',
-	top: 30,
+var navWin = Ti.UI.iOS.createNavigationWindow({
+	window : mainWin
 });
+//Logo
 var logo = Ti.UI.createImageView({
 	image: "utImages/logo.png",
 	height: 100,
 	width: 200,
-	top: 75,
+	top: 10,
 });
 //Add
 mainWin.add(logo);
-mainWin.add(headerT);
 
 //Email and Password
 var emailLabel = Ti.UI.createLabel({
@@ -35,7 +33,7 @@ var emailLabel = Ti.UI.createLabel({
 	text:'Email',
 	font:{fontSize:20,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 225,
+	top: 25,
 	left: 75,
 });
 var passwordLabel = Ti.UI.createLabel({
@@ -43,7 +41,7 @@ var passwordLabel = Ti.UI.createLabel({
 	text:'Password',
 	font:{fontSize:20,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 300,
+	top: 10,
 	left: 75,
 });
 var email = Ti.UI.createTextField({
@@ -54,7 +52,8 @@ var email = Ti.UI.createTextField({
 	width: 225,
 	font:{fontSize:18,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 250,
+	top: 5,
+	hintText : "Enter Your Email ",
 });
 var password = Ti.UI.createTextField({
 	color:'#75000000',
@@ -64,7 +63,9 @@ var password = Ti.UI.createTextField({
 	width: 225,
 	font:{fontSize:18,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 325,
+	top: 5,
+	hintText : "Enter Your Password",
+	passwordMask : true,
 });
 //Add
 mainWin.add(emailLabel);
@@ -73,56 +74,91 @@ mainWin.add(passwordLabel);
 mainWin.add(password);
 
 //Buttons
-var signIn = Ti.UI.createButton({
-	title:'Log In',
-	color: '#CB5727',
-	font:{fontSize:18,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
-	top: 360,
-});
 var dont = Ti.UI.createLabel({
 	color:'#CB5727',
 	text:"Don't have an account?",
 	font:{fontSize:16,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 397,
+	top: 0,
 	left: 70,
 });
-var signUp = Ti.UI.createButton({
-	title:'Sign Up',
+var loginLabel = Ti.UI.createLabel({
+	text : "Log In",
+	color: '#CB5727',
+	font:{fontSize:18,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
+});
+var login = Ti.UI.createView({
+	top : 20,
+	left : 160,
+	height : 50,
+	width : 100,
+	backgroundColor : "#FFFFFF",
+	layout : "horizontal"
+});
+login.add(loginLabel);
+
+var error = Ti.UI.createLabel({
+	text: "Email & Password Don't Macth",
+	color: "red",
+	font:{fontSize:18,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
+	center: 0,
+	top: -120
+});
+
+login.addEventListener('click', function() {
+	if (password.value.length >= 6 && password.value == parseInt(password.value)) {
+		for (var i = 0; i < email.value.length; i++) {
+			var mail = email.value;
+			if (mail[i] == '@') {
+				if (mail[i + 1]) {
+					navWin.openWindow(winTable);
+				}
+			}
+		}
+	} else {
+		email.setValue("");
+		password.setValue("");
+		mainWin.add(error);
+	}
+});
+
+var signLabel = Ti.UI.createLabel({
+	text : "Sign Up",
 	color: '#CB5727',
 	font:{fontSize:16,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
-	top: 390,
-	left: 245
 });
-signUp.addEventListener('click', function(){
-    winS.open();
+var sign = Ti.UI.createView({
+	top : -21,
+	left : 245,
+	height : 50,
+	width : 60,
+	backgroundColor : "FFFFFF",
+	layout : "horizontal"
 });
+sign.add(signLabel);
+sign.addEventListener('click', function() {
+	navWin.openWindow(winS);
+});
+
 //Add
-mainWin.add(signIn);
+mainWin.add(login);
 mainWin.add(dont);
-mainWin.add(signUp);
+mainWin.add(sign);
 
 //Sign Up Window
 var winS = Ti.UI.createWindow({  
-    backgroundColor:'#FFFFFF'
+    backgroundColor : "#FFFFFF",
+	title : "TexasSports.com"
 });
-//Title and Logo
-var headerTS = Ti.UI.createLabel({
-	color:'#CB5727',
-	text:'TexasSports.com',
-	font:{fontSize:30,fontFamily:'Helvetica Neue'},
-	textAlign:'left',
-	top: 20,
-});
+//Logo
 var logoS = Ti.UI.createImageView({
 	image: "utImages/logo.png",
 	height: 100,
 	width: 200,
-	top: 65,
+	top: 10,
 });
 //Add
 winS.add(logoS);
-winS.add(headerTS);
 
 //Name, Email and Password
 var required = Ti.UI.createLabel({
@@ -130,15 +166,7 @@ var required = Ti.UI.createLabel({
 	text:'*Required Fields',
 	font:{fontSize:12,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
 	textAlign:'left',
-	top: 180,
-	left: 75,
-});
-var nameLabel = Ti.UI.createLabel({
-	color:'#CB5727',
-	text:'First and Last Name*',
-	font:{fontSize:18,fontFamily:'Helvetica Neue'},
-	textAlign:'left',
-	top: 195,
+	top: 125,
 	left: 75,
 });
 var emailLabelS = Ti.UI.createLabel({
@@ -146,7 +174,7 @@ var emailLabelS = Ti.UI.createLabel({
 	text:'Email*',
 	font:{fontSize:18,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 240,
+	top: 150,
 	left: 75,
 });
 var passwordLabelS = Ti.UI.createLabel({
@@ -154,25 +182,15 @@ var passwordLabelS = Ti.UI.createLabel({
 	text:'Password*',
 	font:{fontSize:18,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 285,
+	top: 200,
 	left: 75,
 });var confirmLabel = Ti.UI.createLabel({
 	color:'#CB5727',
 	text:'Confirm Password*',
 	font:{fontSize:18,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 330,
+	top: 250,
 	left: 75,
-});
-var name = Ti.UI.createTextField({
-	color:'#75000000',
-	backgroundColor: "#75CCCCCC",
-	borderColor:"#CB5727",
-	borderRadius:3,
-	width: 225,
-	font:{fontSize:18,fontFamily:'Helvetica Neue'},
-	textAlign:'left',
-	top: 215,
 });
 var emailS = Ti.UI.createTextField({
 	color:'#75000000',
@@ -182,7 +200,8 @@ var emailS = Ti.UI.createTextField({
 	width: 225,
 	font:{fontSize:18,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 260,
+	top: 170,
+	hintText : "Valid Email Address",
 });
 var passwordS = Ti.UI.createTextField({
 	color:'#75000000',
@@ -192,7 +211,9 @@ var passwordS = Ti.UI.createTextField({
 	width: 225,
 	font:{fontSize:18,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 305,
+	top: 220,
+	hintText : "6+ Digit Password ",
+	passwordMask : true,
 });
 var confirm = Ti.UI.createTextField({
 	color:'#75000000',
@@ -202,12 +223,12 @@ var confirm = Ti.UI.createTextField({
 	width: 225,
 	font:{fontSize:18,fontFamily:'Helvetica Neue'},
 	textAlign:'left',
-	top: 350,
+	top: 270,
+	hintText : "Confirm Password",
+	passwordMask : true,
 });
 //Add
 winS.add(required);
-winS.add(nameLabel);
-winS.add(name);
 winS.add(emailLabelS);
 winS.add(emailS);
 winS.add(passwordLabelS);
@@ -216,27 +237,54 @@ winS.add(confirmLabel);
 winS.add(confirm);
 
 //Button
-var create = Ti.UI.createButton({
-	title:'Sign Up',
+var loginLabelS = Ti.UI.createLabel({
+	text : "Sign Up",
 	color: '#CB5727',
-	font:{fontSize:16,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
-	top: 375,
+	font:{fontSize:18,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
+});
+var loginS = Ti.UI.createView({
+	center : 0,
+	top: 300,
+	height : 50,
+	width : 100,
+	backgroundColor : "#FFFFFF",
+});
+
+loginS.add(loginLabelS);
+
+//var pokedex = require("table");
+
+var errorS = Ti.UI.createLabel({
+	text: "Email or Password Incorrect",
+	color: "red",
+	font:{fontSize:18,fontFamily:'Helvetica Neue', fontWeight:'Bold'},
+	center: 0
+});
+
+loginS.addEventListener('click', function() {
+	if (passwordS.value.length >= 6 && passwordS.value === confirm.value) {
+		for (var i = 0; i < emailS.value.length; i++) {
+			var mailS = emailS.value;
+			if (mailS[i] == '@') {
+				if (mailS[i + 1]) {
+					navWin.openWindow(winTable);
+				}
+			}
+		}
+	} else {
+		emailS.setValue("");
+		passwordS.setValue("");
+		winS.add(errorS);
+	}
 });
 //Add
-winS.add(create);
+winS.add(loginS);
+//Table
+var winTable = Ti.UI.createWindow({
+	backgroundColor : "#FFFFFF",
+	title : "TexasSports.com"
+});
 
-//Table Window
-// var winTable = Ti.UI.createWindow({  
-    // backgroundColor:'#FFFFFF'
-// });
-// //Table
-// var table = Ti.UI.createTableView({
-	// style: Ti.UI.iPhone.TableViewStyle.GROUPED,
-	// data: [utSports],
-	// separatorColor: "#CB5727",
-// });
-// winTable.add(table);
+winTable.add(utSports.table);
 
-mainWin.open();
-//winS.open();
-//winTable.open();
+navWin.open();
